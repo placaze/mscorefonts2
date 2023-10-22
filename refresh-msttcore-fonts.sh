@@ -327,15 +327,6 @@ do
 done
 
 if ! [ "$DOWNLOAD_ONLY_FLAG" ]; then
-  progress "Indexing the new fonts for core X fonts"
-  mkfontscale "$FONTDIR"
-  mkfontdir "$FONTDIR"
-
-  # add fontdir temporarily, the 09-msttcore-fontpath.conf does it permanently but you have to logoff and on
-  progress "temporarily adding $FONTDIR to the core X font path"
-  xset fp+ "$FONTDIR"
-  xset fp rehash
-
   oops=
   case "$FONTDIR" in
   /usr/share/fonts/*)

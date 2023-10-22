@@ -10,18 +10,17 @@
 Summary: Installer for Microsoft core TrueType fonts for better Windows Compatibility
 Name: %{fontname}-fonts-installer
 Obsoletes: msttcorefonts <= 2.5-1
-Provides: msttcorefonts = 2.6-1
-Version: 2.6
+Provides: msttcorefonts = 2.6.1-1
+Version: 2.6.1
 Release: 1
 License: GPLv2
 Group: User Interface/X
 BuildArch: noarch
 Requires: curl
 Requires: cabextract
-Requires: xorg-x11-font-utils
 Requires: fontconfig
 Packager: Rob Janes <janes.rob gmail com>
-Source: msttcore-fonts-installer-2.6.tar.gz
+Source: msttcore-fonts-installer-2.6.1.tar.gz
 URL: http://mscorefonts2.sourceforge.net/
 
 %description
@@ -121,10 +120,6 @@ if [ "$1" = "0" ]; then
   [ -f /etc/fonts/conf.d/09-msttcore-fonts.conf ] && rm -f /etc/fonts/conf.d/09-msttcore-fonts.conf
   [ -f "%{license_file}" ] && rm -f "%{license_file}"
   [ -f /usr/lib/msttcore-fonts-installer/installed-list.txt ] && rm -f /usr/lib/msttcore-fonts-installer/installed-list.txt
-
-  echo "### Removing %{fontdir} from the core X fonts path" >&2
-  xset -fp %{fontdir} || :
-  xset fp rehash || :
 fi
 
 %files
@@ -137,6 +132,9 @@ fi
 /usr/lib/msttcore-fonts-installer
 
 %changelog
+* Sun Oct 22 2023  placaze 2.6.1-1
+- remove "xorg-x11-font-utils" dependencies
+
 * Wed May 29 2013  Rob Janes <janes.rob gmail com> 2.6-1
 - added ClearType fonts, thanks to Robbie Litchfield.
   see http://www.microsoft.com/typography/ClearTypeFonts.mspx for more info.
@@ -150,7 +148,7 @@ fi
 - switched to sha256 from md5
 - available at https://downloads.sourceforge.net/project/mscorefonts2/specs/msttcore-fonts-installer-2.2-1.spec
 
-* Mon Sep 15 2012  Rob Janes <janes.rob gmail com> 2.1-2
+* Sat Sep 15 2012  Rob Janes <janes.rob gmail com> 2.1-2
 - updated comments, messages, description and such.
 - don't download older cabs for fonts in the EUupdate.EXE file,
   unless the download for the EUupdate failed.
